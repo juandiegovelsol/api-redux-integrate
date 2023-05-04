@@ -13,9 +13,7 @@ export const postLogin = async ({ email, password }) => {
         "Content-Type": "application/json",
       },
     });
-    console.log("response", response);
     const data = await response.json();
-    console.log("Data", data);
     return data;
   } catch (error) {
     console.log(error);

@@ -10,7 +10,6 @@ export const postLoginAsync = createAsyncThunk(
   "login/postLogin",
   async ({ email, password }) => {
     const data = await postLogin({ email, password });
-    console.log("Data async", data);
     return data;
   }
 );

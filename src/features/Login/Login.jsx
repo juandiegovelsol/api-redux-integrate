@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectLogin, postLoginAsync } from "./loginSlice";
@@ -17,6 +17,11 @@ const Login = () => {
     const password = e.target.elements[1].value;
     dispatch(postLoginAsync({ email, password }));
   };
+  useEffect(() => {
+    if (info.token) {
+      navigate("/favs");
+    }
+  }, [info]);
 
   return (
     <main className="login">
