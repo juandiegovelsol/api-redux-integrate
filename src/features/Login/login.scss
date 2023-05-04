@@ -5,15 +5,19 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-color: rgba(241, 227, 243);
+
   &__container {
     height: 40%;
     width: 60%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 2px solid rgb(120, 120, 120);
+    border: 2px solid rgb(53, 144, 243);
     border-radius: 20px;
-    background-color: rgb(243, 243, 243);
+    background-color: rgba(98, 191, 237);
+    overflow: hidden;
+    box-shadow: 5px 5px 12px 0px rgba(0, 0, 0, 0.3);
   }
   &__title {
     height: 15%;
@@ -21,6 +25,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: rgba(53, 144, 243);
   }
   &__form {
     font-size: 20px;
@@ -30,11 +35,29 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    .mb-3 {
-      height: 30%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
+  }
+  &__mb-3 {
+    height: 33%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+  }
+  &__input {
+    min-height: 50%;
+    border-radius: 5px;
+    border: none;
+    background-color: rgba(241, 227, 243);
+  }
+  &__button {
+    border: none;
+    border-radius: 5px;
+    height: 30px;
+    width: 10%;
+    background-color: rgba(241, 227, 243);
+    &:hover,
+    &:focus {
+      cursor: pointer;
+      background-color: rgba(194, 187, 240);
     }
   }
 }
