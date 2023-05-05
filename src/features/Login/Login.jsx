@@ -1,20 +1,25 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { selectLogin } from "./loginSlice";
+import { selectLogin, clearLoginInfo } from "./loginSlice";
 import { LoginForm } from "./LoginForm";
 
 import "./login.scss";
 
 const Login = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { loading, info } = useSelector(selectLogin);
+  const { info } = useSelector(selectLogin);
 
   useEffect(() => {
     if (info.token) {
       navigate("/favs");
     }
   }, [info, navigate]);
+
+  useEffect(() => {
+    dispatch(clearLoginInfo());
+  }, []);
 
   return (
     <main className="login-container">
