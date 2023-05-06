@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { selectLogin } from "../Login/loginSlice";
 import "./fav.scss";
 
 const Fav = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { info } = useSelector(selectLogin);
+
+  useEffect(() => {
+    console.log("info", info);
+    if (info.length === 0) {
+      navigate("/login");
+    }
+  }, []);
+
+  useEffect(() => {
+    if (info.length === 0) {
+      navigate("/login");
+    }
+  }, [info]);
+
   return (
     <main className="fav-container">
       <section className="fav-container__box">
