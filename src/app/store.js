@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import loginReducer from "../features/Login/loginSlice";
-/* import counterReducer from '../features/counter/counterSlice'; */
+import favReducer from "../features/Fav/favSlice";
 
 export const store = configureStore({
   reducer: {
     login: loginReducer,
-    /* counter: counterReducer, */
+    fav: favReducer,
   },
 });

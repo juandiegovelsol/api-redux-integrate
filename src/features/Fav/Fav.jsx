@@ -2,17 +2,23 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectLogin } from "../Login/loginSlice";
+import { selectFav } from "./favSlice";
+import { getOneListAsync } from "./favSlice";
 import "./fav.scss";
 
 const Fav = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { info } = useSelector(selectLogin);
+  const { loading, list } = useSelector(selectFav);
 
   useEffect(() => {
-    console.log("info", info);
     if (info.length === 0) {
       navigate("/login");
+    } else {
+      const { token } = info;
+      const idlist = 1; //must get idlist from url params
+      dispatch(getOneListAsync({ token, idlist }));
     }
   }, []);
 
@@ -21,6 +27,10 @@ const Fav = () => {
       navigate("/login");
     }
   }, [info]);
+
+  useEffect(() => {
+    console.log("list", list);
+  }, [list]);
 
   return (
     <main className="fav-container">
