@@ -11,6 +11,7 @@ const Fav = () => {
   const navigate = useNavigate();
   const { info } = useSelector(selectLogin);
   const { loading, list } = useSelector(selectFav);
+  const { favs } = list || [];
 
   useEffect(() => {
     if (info.length === 0) {
@@ -28,10 +29,6 @@ const Fav = () => {
     }
   }, [info]);
 
-  useEffect(() => {
-    console.log("list", list);
-  }, [list]);
-
   return (
     <main className="fav-container">
       <section className="fav-container__box">
@@ -48,58 +45,22 @@ const Fav = () => {
               <th></th>
             </thead>
             <tbody className="fav-list__body">
-              <tr className="list-item">
-                <td>Un x100to</td>
-                <td>Bad Bunny's song</td>
-                <td>
-                  <a href="https://www.youtube.com/watch?v=3inw26U-os4">Link</a>
-                </td>
-                <td>
-                  <button className="edit">Edit</button>
-                </td>
-                <td>
-                  <button className="errase">Errase</button>
-                </td>
-              </tr>
-              <tr className="list-item">
-                <td>Un x100to</td>
-                <td>Bad Bunny's song</td>
-                <td>
-                  <a href="https://www.youtube.com/watch?v=3inw26U-os4">Link</a>
-                </td>
-                <td>
-                  <button className="edit">Edit</button>
-                </td>
-                <td>
-                  <button className="errase">Errase</button>
-                </td>
-              </tr>
-              <tr className="list-item">
-                <td>Un x100to</td>
-                <td>Bad Bunny's song</td>
-                <td>
-                  <a href="https://www.youtube.com/watch?v=3inw26U-os4">Link</a>
-                </td>
-                <td>
-                  <button className="edit">Edit</button>
-                </td>
-                <td>
-                  <button className="errase">Errase</button>
-                </td>
-              </tr>
-              <tr className="list-item">
-                <td>Un x100to</td>
-                <td>Bad Bunny's song</td>
-                <td>
-                  <a href="https://www.youtube.com/watch?v=3inw26U-os4">Link</a>
-                </td>
-                <td>
-                  <button className="edit">Edit</button>
-                </td>
-                <td>
-                  <button className="errase">Errase</button>
-                </td>
-              </tr>
+              {favs &&
+                favs.map((item, index) => (
+                  <tr className="list-item" key={index}>
+                    <td>{item.title}</td>
+                    <td>{item.description}</td>
+                    <td>
+                      <a href={item.link}>Link</a>
+                    </td>
+                    <td>
+                      <button className="edit">Edit</button>
+                    </td>
+                    <td>
+                      <button className="errase">Errase</button>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </article>
