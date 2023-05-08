@@ -4,22 +4,25 @@ import { useNavigate } from "react-router-dom";
 import { selectLogin } from "../Login/loginSlice";
 import { selectFav } from "./favSlice";
 import { getOneListAsync } from "./favSlice";
+import { LoadingCircle } from "../../components/LoadingCircle";
+import { CustomTable } from "../../components/CustomTable";
 import "./fav.scss";
 
 const Fav = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { info } = useSelector(selectLogin);
+  const { iduser } = info || 0;
   const { loading, list } = useSelector(selectFav);
-  const { favs } = list || [];
+  const { list: favList } = list || {};
+  const { favs } = favList || [];
 
   useEffect(() => {
     if (info.length === 0) {
       navigate("/login");
     } else {
       const { token } = info;
-      const idlist = 1; //must get idlist from url params
-      dispatch(getOneListAsync({ token, idlist }));
+      dispatch(getOneListAsync({ token, iduser }));
     }
   }, []);
 
@@ -35,35 +38,18 @@ const Fav = () => {
         <article className="fav-container__search">
           <h2>FAVS</h2>
         </article>
-        <article className="fav-container__list">
-          <table className="fav-list">
-            <thead className="fav-list__head">
-              <th>Title</th>
-              <th>Description</th>
-              <th>Link</th>
-              <th></th>
-              <th></th>
-            </thead>
-            <tbody className="fav-list__body">
-              {favs &&
-                favs.map((item, index) => (
-                  <tr className="list-item" key={index}>
-                    <td>{item.title}</td>
-                    <td>{item.description}</td>
-                    <td>
-                      <a href={item.link}>Link</a>
-                    </td>
-                    <td>
-                      <button className="edit">Edit</button>
-                    </td>
-                    <td>
-                      <button className="errase">Errase</button>
-                    </td>
-                  </tr>
-                ))}
-            </tbody>
-          </table>
-        </article>
+        {!loading && (
+          <article className="fav-container__list">
+            <CustomTable
+              title={"Title"}
+              description={"Description"}
+              link={"Link"}
+              favs={favs}
+            />
+            <button className="fav-container__add-button">Add one</button>
+          </article>
+        )}
+        {loading && <LoadingCircle />}
       </section>
     </main>
   );

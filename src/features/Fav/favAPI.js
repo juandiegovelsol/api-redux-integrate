@@ -1,8 +1,7 @@
-export const getOneList = async ({ token, idlist }) => {
-  const url = `http://localhost:4002/api/favs/${idlist}`;
-
+export const getOneList = async ({ token, iduser }) => {
+  const url = `http://localhost:4002/api/favs/${iduser}`;
+  /* const url = `https://squid-app-tf6mp.ondigitalocean.app/api/favs/${iduser}`; */
   try {
-    console.log("Token & id", token, idlist);
     const response = await fetch(url, {
       headers: {
         Authorization: `Bearer ${token}`,

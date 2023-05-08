@@ -8,8 +8,8 @@ const initialState = {
 
 export const getOneListAsync = createAsyncThunk(
   "favs/getOneList",
-  async ({ token, idlist }) => {
-    const data = await getOneList({ token, idlist });
+  async ({ token, iduser }) => {
+    const data = await getOneList({ token, iduser });
     return data;
   }
 );
