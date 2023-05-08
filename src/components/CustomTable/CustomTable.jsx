@@ -1,4 +1,5 @@
 import React from "react";
+import { CustomTableRow } from "../CustomTableRow";
 
 import "./custom-table.scss";
 
@@ -15,22 +16,7 @@ const CustomTable = ({ title, description, link, favs }) => {
         </tr>
       </thead>
       <tbody className="fav-list__body">
-        {favs &&
-          favs.map((item, index) => (
-            <tr className="list-item" key={index}>
-              <td>{item.title}</td>
-              <td>{item.description}</td>
-              <td>
-                <a href={item.link}>Link</a>
-              </td>
-              <td>
-                <button className="edit">Edit</button>
-              </td>
-              <td>
-                <button className="errase">Errase</button>
-              </td>
-            </tr>
-          ))}
+        <CustomTableRow favs={favs} />
       </tbody>
     </table>
   );
