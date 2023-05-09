@@ -21,8 +21,16 @@
     width: 100%;
     background-color: #62bfed;
   }
-  &__list {
+  &__positioner {
     height: 85%;
+    width: 100%;
+    position: relative;
+  }
+  &__list {
+    position: absolute;
+    top: 0;
+    z-index: 5;
+    height: 100%;
     width: 100%;
     background-color: #62bfed;
     display: flex;
