@@ -1,11 +1,21 @@
 import React from "react";
 import { Button, Form } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { addFavClose } from "../../features/Fav/favSlice";
 import "./add-fav-form.scss";
 
 const AddFavForm = () => {
-  const handleSubmit = () => {};
+  const dispatch = useDispatch();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(addFavClose());
+  };
+  const handleCancel = (e) => {
+    e.preventDefault();
+    dispatch(addFavClose());
+  };
   return (
-    <article className="add-fav">
+    <section className="add-fav">
       <div className="add-fav__form-container">
         <Form className="add-fav__form" onSubmit={handleSubmit}>
           <Form.Group className="add-fav__mb-3" controlId="formBasicTitle">
@@ -39,11 +49,18 @@ const AddFavForm = () => {
           </Form.Group>
 
           <Button variant="primary" type="submit" className="add-fav__button">
-            Submit
+            Add
+          </Button>
+          <Button
+            variant="primary"
+            className="add-fav__button"
+            onClick={handleCancel}
+          >
+            Cancel
           </Button>
         </Form>
       </div>
-    </article>
+    </section>
   );
 };
 

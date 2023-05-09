@@ -4,6 +4,7 @@ import { getOneList } from "./favAPI";
 const initialState = {
   loading: false,
   list: [],
+  addFavWindowHandler: true,
 };
 
 export const getOneListAsync = createAsyncThunk(
@@ -17,6 +18,14 @@ export const getOneListAsync = createAsyncThunk(
 const favSlice = createSlice({
   name: "fav",
   initialState,
+  reducers: {
+    addFavOpen: (state, action) => {
+      state.addFavWindowHandler = true;
+    },
+    addFavClose: (state, action) => {
+      state.addFavWindowHandler = false;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getOneListAsync.pending, (state) => {
@@ -28,6 +37,8 @@ const favSlice = createSlice({
       });
   },
 });
+
+export const { addFavOpen, addFavClose } = favSlice.actions;
 
 export const selectFav = (state) => state.fav;
 

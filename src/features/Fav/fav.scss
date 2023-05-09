@@ -5,9 +5,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  &__box {
+  &__positioner {
     height: 70%;
     width: 60%;
+    position: relative;
+  }
+  &__box {
+    height: 100%;
+    width: 100%;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -21,16 +26,8 @@
     width: 100%;
     background-color: #62bfed;
   }
-  &__positioner {
-    height: 85%;
-    width: 100%;
-    position: relative;
-  }
   &__list {
-    position: absolute;
-    top: 0;
-    z-index: 5;
-    height: 100%;
+    height: 85%;
     width: 100%;
     background-color: #62bfed;
     display: flex;

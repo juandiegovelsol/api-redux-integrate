@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { selectLogin } from "../Login/loginSlice";
 import { selectFav } from "./favSlice";
 import { getOneListAsync } from "./favSlice";
+import { addFavOpen } from "./favSlice";
 import { LoadingCircle } from "../../components/LoadingCircle";
 import { CustomTable } from "../../components/CustomTable";
 import { AddFavForm } from "../../components/AddFavForm";
@@ -14,7 +15,7 @@ const Fav = () => {
   const navigate = useNavigate();
   const { info } = useSelector(selectLogin);
   const { iduser } = info || 0;
-  const { loading, list } = useSelector(selectFav);
+  const { loading, list, addFavWindowHandler } = useSelector(selectFav);
   const { list: favList } = list || {};
   const { favs } = favList || [];
 
@@ -33,14 +34,18 @@ const Fav = () => {
     }
   }, [info]);
 
+  const handleAddFav = () => {
+    dispatch(addFavOpen());
+  };
+
   return (
     <main className="fav-container">
       {!loading && (
-        <section className="fav-container__box">
-          <article className="fav-container__search">
-            <h2>FAVS</h2>
-          </article>
-          <div className="fav-container__positioner">
+        <div className="fav-container__positioner">
+          <section className="fav-container__box">
+            <article className="fav-container__search">
+              <h2>FAVS</h2>
+            </article>
             <article className="fav-container__list">
               <CustomTable
                 title={"Title"}
@@ -48,11 +53,16 @@ const Fav = () => {
                 link={"Link"}
                 favs={favs}
               />
-              <button className="fav-container__add-button">Add one</button>
+              <button
+                className="fav-container__add-button"
+                onClick={handleAddFav}
+              >
+                Add one
+              </button>
             </article>
-            {true && <AddFavForm />}
-          </div>
-        </section>
+          </section>
+          {addFavWindowHandler && <AddFavForm />}
+        </div>
       )}
       {loading && <LoadingCircle />}
     </main>
