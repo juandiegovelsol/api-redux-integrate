@@ -38,9 +38,9 @@ const CustomTableRow = ({ favs }) => {
             <td>
               <a href={item.link}>Link</a>
             </td>
-            <td>
+            {/* <td>
               <button className="list-item__edit-button">Edit</button>
-            </td>
+            </td> */}
             <td>
               <button
                 className="list-item__errase-button"
