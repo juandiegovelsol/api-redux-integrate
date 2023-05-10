@@ -13,3 +13,30 @@ export const getOneList = async ({ token, iduser }) => {
     console.log(error);
   }
 };
+
+export const createOneFav = async ({
+  token,
+  title,
+  description,
+  link,
+  idlist: list_idlist,
+}) => {
+  const url = "http://localhost:4002/api/favs/fav";
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify({
+        title,
+        description,
+        link,
+        list_idlist,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {}
+};

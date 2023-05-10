@@ -1,19 +1,46 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { addFavClose } from "../../features/Fav/favSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { selectLogin } from "../../features/Login/loginSlice";
+import {
+  selectFav,
+  addFavClose,
+  clearResponse,
+  createOneFavAsync,
+  getOneListAsync,
+} from "../../features/Fav/favSlice";
 import "./add-fav-form.scss";
 
 const AddFavForm = () => {
   const dispatch = useDispatch();
+  const { info } = useSelector(selectLogin);
+  const { token } = info || "";
+  const { iduser } = info || 0;
+  const { list, response } = useSelector(selectFav);
+  const { list: favList } = list || {};
+  const { idlist } = favList || 0;
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addFavClose());
+    const title = e.target.elements[0].value;
+    const description = e.target.elements[1].value;
+    const link = e.target.elements[2].value;
+    dispatch(createOneFavAsync({ token, title, description, link, idlist }));
   };
+
   const handleCancel = (e) => {
     e.preventDefault();
     dispatch(addFavClose());
   };
+
+  useEffect(() => {
+    if (Object.keys(response).length) {
+      dispatch(getOneListAsync({ token, iduser }));
+      dispatch(clearResponse());
+      dispatch(addFavClose());
+    }
+  }, [response]);
+
   return (
     <section className="add-fav">
       <div className="add-fav__form-container">
