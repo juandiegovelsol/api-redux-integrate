@@ -40,3 +40,17 @@ export const createOneFav = async ({
     return data;
   } catch (error) {}
 };
+
+export const deleteFav = async ({ token, idfavs }) => {
+  const url = `http://localhost:4002/api/favs/fav/${idfavs}`;
+  try {
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {}
+};
