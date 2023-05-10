@@ -9,18 +9,28 @@
     width: 50%;
     background-color: transparent;
     border-radius: 5px;
+    font-weight: 700;
     &:hover,
     &:focus {
       cursor: pointer;
-      background-color: #c2bbf0;
     }
   }
   &__edit-button {
     border: 2px solid green;
     color: green;
+    &:hover,
+    &:focus {
+      background-color: green;
+      color: white;
+    }
   }
   &__errase-button {
     border: 2px solid red;
     color: red;
+    &:hover,
+    &:focus {
+      background-color: red;
+      color: white;
+    }
   }
 }

@@ -46,7 +46,7 @@ const AddFavForm = () => {
       <div className="add-fav__form-container">
         <Form className="add-fav__form" onSubmit={handleSubmit}>
           <Form.Group className="add-fav__mb-3" controlId="formBasicTitle">
-            <Form.Label>Fav Title</Form.Label>
+            <Form.Label>Fav Title: </Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter Title"
@@ -58,7 +58,7 @@ const AddFavForm = () => {
             className="add-fav__mb-3"
             controlId="formBasicDescription"
           >
-            <Form.Label>Fav Description</Form.Label>
+            <Form.Label>Fav Description: </Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter Description"
@@ -67,24 +67,29 @@ const AddFavForm = () => {
           </Form.Group>
 
           <Form.Group className="add-fav__mb-3" controlId="formBasicLink">
-            <Form.Label>Fav Link</Form.Label>
+            <Form.Label>Fav Link: </Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter Link"
               className="add-fav__input"
             />
           </Form.Group>
-
-          <Button variant="primary" type="submit" className="add-fav__button">
-            Add
-          </Button>
-          <Button
-            variant="primary"
-            className="add-fav__button"
-            onClick={handleCancel}
-          >
-            Cancel
-          </Button>
+          <div className="add-fav__buttons-container">
+            <Button
+              variant="primary"
+              type="submit"
+              className="add-fav__add-button"
+            >
+              Add
+            </Button>
+            <Button
+              variant="primary"
+              className="add-fav__cancel-button"
+              onClick={handleCancel}
+            >
+              Cancel
+            </Button>
+          </div>
         </Form>
       </div>
     </section>
