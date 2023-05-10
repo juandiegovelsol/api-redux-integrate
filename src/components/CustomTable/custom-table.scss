@@ -1,0 +1,19 @@
+.fav-list {
+  height: 80%;
+  width: 80%;
+  background-color: #f1e3f3;
+  border-radius: 20px;
+  overflow: hidden;
+  &__head {
+    height: 15%;
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+  }
+  &__body {
+    height: 85%;
+    width: 100%;
+    display: block;
+    overflow-y: scroll;
+  }
+}

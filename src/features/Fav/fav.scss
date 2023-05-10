@@ -1,0 +1,54 @@
+.fav-container {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &__positioner {
+    height: 70%;
+    width: 60%;
+    position: relative;
+  }
+  &__box {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 20px;
+  }
+  &__search {
+    height: 15%;
+    width: 100%;
+    background-color: #62bfed;
+  }
+  &__list {
+    height: 85%;
+    width: 100%;
+    background-color: #62bfed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  &__add-button {
+    height: 10%;
+    width: 20%;
+    background-color: transparent;
+    border: 3px solid #3590f3;
+    border-radius: 10px;
+    font-size: larger;
+    font-weight: 700;
+    color: #3590f3;
+    &:hover,
+    &:focus {
+      cursor: pointer;
+      background-color: #3590f3;
+      color: #f1e3f3;
+    }
+  }
+}
