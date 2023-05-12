@@ -65,13 +65,26 @@ const Register = () => {
     dispatch(clearRegisterInfo());
   }, []);
 
+  const goToLogin = () => {
+    navigate("/login");
+  };
+
   return (
     <main className="register-container">
       <RegisterForm
-        title={"FAVS REGISTER"}
-        buttonText={"Register"}
+        title={"FAVS SIGN IN"}
+        buttonText={"Sign in"}
         handleSubmit={handleRegister}
       />
+      <span className="register-container__login">
+        Already have an account?
+        <button
+          className="register-container__login-button"
+          onClick={goToLogin}
+        >
+          Go to login
+        </button>
+      </span>
     </main>
   );
 };
