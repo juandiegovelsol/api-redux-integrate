@@ -9,6 +9,7 @@ const initialState = {
 export const postLoginAsync = createAsyncThunk(
   "login/postLogin",
   async ({ email, password }) => {
+    console.log("login", email, password);
     const data = await postLogin({ email, password });
     return data;
   }
