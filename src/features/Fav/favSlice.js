@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getOneList, createOneFav, deleteFav } from "./favAPI";
+import { getOneList, createOneFav, deleteFav, createList } from "./favAPI";
 
 const initialState = {
   loading: false,
@@ -7,6 +7,7 @@ const initialState = {
   addFavWindowHandler: false,
   response: {},
   deleteResponse: {},
+  createListResponse: {},
 };
 
 export const getOneListAsync = createAsyncThunk(
@@ -41,6 +42,18 @@ export const deleteFavAsync = createAsyncThunk(
   }
 );
 
+export const createListAsync = createAsyncThunk(
+  "favs/createList",
+  async ({ token, listname, iduser }) => {
+    const data = await createList({
+      token,
+      listname,
+      iduser,
+    });
+    return data;
+  }
+);
+
 const favSlice = createSlice({
   name: "fav",
   initialState,
@@ -57,6 +70,9 @@ const favSlice = createSlice({
     clearDeleteResponse: (state, action) => {
       state.deleteResponse = {};
     },
+    clearListResponse: (state, action) => {
+      state.createListResponse = {};
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -72,12 +88,20 @@ const favSlice = createSlice({
       })
       .addCase(deleteFavAsync.fulfilled, (state, action) => {
         state.deleteResponse = action.payload;
+      })
+      .addCase(createListAsync.fulfilled, (state, action) => {
+        state.createListResponse = action.payload;
       });
   },
 });
 
-export const { addFavOpen, addFavClose, clearResponse, clearDeleteResponse } =
-  favSlice.actions;
+export const {
+  addFavOpen,
+  addFavClose,
+  clearResponse,
+  clearDeleteResponse,
+  clearListResponse,
+} = favSlice.actions;
 
 export const selectFav = (state) => state.fav;
 

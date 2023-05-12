@@ -1,21 +1,13 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { postLoginAsync, selectLogin } from "../loginSlice";
+import { selectLogin } from "../loginSlice";
 import { Button, Form } from "react-bootstrap";
 import { LoadingCircle } from "../../../components/LoadingCircle";
 
 import "./login-form.scss";
 
-const LoginForm = ({ title }) => {
-  const dispatch = useDispatch();
+const LoginForm = ({ title, buttonText, handleSubmit }) => {
   const { loading } = useSelector(selectLogin);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const email = e.target.elements[0].value;
-    const password = e.target.elements[1].value;
-    dispatch(postLoginAsync({ email, password }));
-  };
 
   return (
     <section className="login">
@@ -45,7 +37,7 @@ const LoginForm = ({ title }) => {
             </Form.Group>
 
             <Button variant="primary" type="submit" className="login__button">
-              Submit
+              {buttonText}
             </Button>
           </Form>
         </>
