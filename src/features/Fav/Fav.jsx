@@ -2,12 +2,17 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectLogin } from "../Login/loginSlice";
-import { selectFav } from "./favSlice";
-import { getOneListAsync } from "./favSlice";
-import { addFavOpen } from "./favSlice";
+import {
+  selectFav,
+  getOneListAsync,
+  addFavOpen,
+  modalWindowOpen,
+  getAllListAsync,
+} from "./favSlice";
 import { LoadingCircle } from "../../components/LoadingCircle";
 import { CustomTable } from "../../components/CustomTable";
 import { AddFavForm } from "../../components/AddFavForm";
+import { ModalWindow } from "../../components/ModalWindow";
 import "./fav.scss";
 
 const Fav = () => {
@@ -15,7 +20,8 @@ const Fav = () => {
   const navigate = useNavigate();
   const { info } = useSelector(selectLogin);
   const { iduser } = info || 0;
-  const { loading, list, addFavWindowHandler } = useSelector(selectFav);
+  const { loading, list, addFavWindowHandler, modalWindowHandler } =
+    useSelector(selectFav);
   const { list: favList } = list || {};
   const { favs } = favList || [];
   const { listname } = favList || "";
@@ -39,6 +45,13 @@ const Fav = () => {
     dispatch(addFavOpen());
   };
 
+  const handleAllList = () => {
+    const { email } = info || "";
+    const { token } = info || "";
+    dispatch(modalWindowOpen());
+    dispatch(getAllListAsync({ token, email }));
+  };
+
   return (
     <main className="fav-container">
       {!loading && (
@@ -46,6 +59,7 @@ const Fav = () => {
           <section className="fav-container__box">
             <article className="fav-container__search">
               <h2>{listname}</h2>
+              <button onClick={handleAllList}>All Lists</button>
             </article>
             <article className="fav-container__list">
               <CustomTable
@@ -63,6 +77,7 @@ const Fav = () => {
             </article>
           </section>
           {addFavWindowHandler && <AddFavForm />}
+          {modalWindowHandler && <ModalWindow />}
         </div>
       )}
       {loading && <LoadingCircle />}

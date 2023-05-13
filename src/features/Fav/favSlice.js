@@ -1,5 +1,11 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getOneList, createOneFav, deleteFav, createList } from "./favAPI";
+import {
+  getOneList,
+  createOneFav,
+  deleteFav,
+  createList,
+  getAllList,
+} from "./favAPI";
 
 const initialState = {
   loading: false,
@@ -8,12 +14,21 @@ const initialState = {
   response: {},
   deleteResponse: {},
   createListResponse: {},
+  allLists: [],
+  modalWindowHandler: false,
 };
 
 export const getOneListAsync = createAsyncThunk(
   "favs/getOneList",
   async ({ token, iduser }) => {
     const data = await getOneList({ token, iduser });
+    return data;
+  }
+);
+export const getAllListAsync = createAsyncThunk(
+  "favs/getAllList",
+  async ({ token, email }) => {
+    const data = await getAllList({ token, email });
     return data;
   }
 );
@@ -73,6 +88,12 @@ const favSlice = createSlice({
     clearListResponse: (state, action) => {
       state.createListResponse = {};
     },
+    modalWindowOpen: (state, action) => {
+      state.modalWindowHandler = true;
+    },
+    modalWindowClose: (state, action) => {
+      state.modalWindowHandler = false;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -91,6 +112,9 @@ const favSlice = createSlice({
       })
       .addCase(createListAsync.fulfilled, (state, action) => {
         state.createListResponse = action.payload;
+      })
+      .addCase(getAllListAsync.fulfilled, (state, action) => {
+        state.allLists = action.payload;
       });
   },
 });
@@ -101,6 +125,8 @@ export const {
   clearResponse,
   clearDeleteResponse,
   clearListResponse,
+  modalWindowOpen,
+  modalWindowClose,
 } = favSlice.actions;
 
 export const selectFav = (state) => state.fav;

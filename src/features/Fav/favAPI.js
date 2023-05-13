@@ -33,6 +33,21 @@ export const createList = async ({ token, listname, iduser }) => {
   } catch (error) {}
 };
 
+export const getAllList = async ({ token, email }) => {
+  const url = "http://localhost:4002/api/favs";
+  try {
+    const response = await fetch(url, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const createOneFav = async ({
   token,
   title,
