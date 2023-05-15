@@ -42,7 +42,13 @@ export const getAllList = async ({ token, email }) => {
       },
     });
     const data = await response.json();
-    return data;
+    let computed = [];
+    data.map((item) => {
+      if (item.useremail === email) {
+        computed.push(item);
+      }
+    });
+    return computed;
   } catch (error) {
     console.log(error);
   }
