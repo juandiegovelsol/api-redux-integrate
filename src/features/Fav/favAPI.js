@@ -54,6 +54,20 @@ export const getAllList = async ({ token, email }) => {
   }
 };
 
+export const deleteList = async ({ token, idlist }) => {
+  const url = `http://localhost:4002/api/favs/${idlist}`;
+  try {
+    const response = await fetch(url, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = await response.json();
+    return data;
+  } catch (error) {}
+};
+
 export const createOneFav = async ({
   token,
   title,

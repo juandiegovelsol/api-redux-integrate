@@ -5,6 +5,7 @@ import {
   deleteFav,
   createList,
   getAllList,
+  deleteList,
 } from "./favAPI";
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
   createListResponse: {},
   allLists: [],
   modalWindowHandler: false,
+  deletedList: {},
 };
 
 export const getOneListAsync = createAsyncThunk(
@@ -25,6 +27,7 @@ export const getOneListAsync = createAsyncThunk(
     return data;
   }
 );
+
 export const getAllListAsync = createAsyncThunk(
   "favs/getAllList",
   async ({ token, email }) => {
@@ -32,6 +35,15 @@ export const getAllListAsync = createAsyncThunk(
     return data;
   }
 );
+
+export const deleteListAsync = createAsyncThunk(
+  "favs/deleteList",
+  async ({ token, idlist }) => {
+    const data = await deleteList({ token, idlist });
+    return data;
+  }
+);
+
 export const createOneFavAsync = createAsyncThunk(
   "favs/createFav",
   async ({ token, title, description, link, idlist }) => {
@@ -94,6 +106,9 @@ const favSlice = createSlice({
     modalWindowClose: (state, action) => {
       state.modalWindowHandler = false;
     },
+    clearDeletedList: (state, action) => {
+      state.deletedList = {};
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -115,6 +130,9 @@ const favSlice = createSlice({
       })
       .addCase(getAllListAsync.fulfilled, (state, action) => {
         state.allLists = action.payload;
+      })
+      .addCase(deleteListAsync.fulfilled, (state, action) => {
+        state.deletedList = action.payload;
       });
   },
 });
@@ -127,6 +145,7 @@ export const {
   clearListResponse,
   modalWindowOpen,
   modalWindowClose,
+  clearDeletedList,
 } = favSlice.actions;
 
 export const selectFav = (state) => state.fav;
