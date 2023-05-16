@@ -80,7 +80,7 @@ const ModalWindow = () => {
               </td>
               <td className="modal__list-tftd">
                 <button className="modal__list-button" onClick={handleAddList}>
-                  Add one default list
+                  Add list
                 </button>
               </td>
             </tr>

@@ -13,6 +13,7 @@ import { LoadingCircle } from "../../components/LoadingCircle";
 import { CustomTable } from "../../components/CustomTable";
 import { AddFavForm } from "../../components/AddFavForm";
 import { ModalWindow } from "../../components/ModalWindow";
+import { Background } from "../../components/Background";
 import "./fav.scss";
 
 const Fav = () => {
@@ -54,6 +55,7 @@ const Fav = () => {
 
   return (
     <main className="fav-container">
+      <Background />
       {!loading && (
         <div className="fav-container__positioner">
           <section className="fav-container__box">
@@ -78,7 +80,7 @@ const Fav = () => {
                   className="fav-container__add-button"
                   onClick={handleAddFav}
                 >
-                  Add one
+                  Add Fav
                 </button>
               </div>
             </article>
