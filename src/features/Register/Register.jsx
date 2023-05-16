@@ -17,6 +17,7 @@ import {
   clearListResponse,
 } from "../Fav/favSlice.js";
 import RegisterForm from "../Login/LoginForm/LoginForm.jsx";
+import { Background } from "../../components/Background";
 
 import "./register.scss";
 
@@ -70,22 +71,25 @@ const Register = () => {
   };
 
   return (
-    <main className="register-container">
-      <RegisterForm
-        title={"FAVS SIGN IN"}
-        buttonText={"Sign in"}
-        handleSubmit={handleRegister}
-      />
-      <span className="register-container__login">
-        Already have an account?
-        <button
-          className="register-container__login-button"
-          onClick={goToLogin}
-        >
-          Go to login
-        </button>
-      </span>
-    </main>
+    <>
+      <Background />
+      <main className="register-container">
+        <RegisterForm
+          title={"FAVS SIGN IN"}
+          buttonText={"Sign in"}
+          handleSubmit={handleRegister}
+        />
+        <span className="register-container__login">
+          Already have an account?
+          <button
+            className="register-container__login-button"
+            onClick={goToLogin}
+          >
+            Go to login
+          </button>
+        </span>
+      </main>
+    </>
   );
 };
 

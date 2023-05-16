@@ -36,11 +36,10 @@ const CustomTableRow = ({ favs }) => {
             <td>{item.title}</td>
             <td>{item.description}</td>
             <td>
-              <a href={item.link}>Link</a>
+              <a href={item.link} target="_blank" rel="noreferrer">
+                Link
+              </a>
             </td>
-            {/* <td>
-              <button className="list-item__edit-button">Edit</button>
-            </td> */}
             <td>
               <button
                 className="list-item__errase-button"

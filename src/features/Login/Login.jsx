@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { selectLogin, clearLoginInfo } from "./loginSlice";
 import { LoginForm } from "./LoginForm";
 import { postLoginAsync } from "./loginSlice";
+import { Background } from "../../components/Background";
 
 import "./login.scss";
 
@@ -30,13 +31,16 @@ const Login = () => {
   }, []);
 
   return (
-    <main className="login-container">
-      <LoginForm
-        title={"FAVS LOGIN"}
-        buttonText={"Login"}
-        handleSubmit={handleLogin}
-      />
-    </main>
+    <>
+      <Background />
+      <main className="login-container">
+        <LoginForm
+          title={"FAVS LOGIN"}
+          buttonText={"Login"}
+          handleSubmit={handleLogin}
+        />
+      </main>
+    </>
   );
 };
 

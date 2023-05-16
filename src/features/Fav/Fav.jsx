@@ -2,12 +2,18 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { selectLogin } from "../Login/loginSlice";
-import { selectFav } from "./favSlice";
-import { getOneListAsync } from "./favSlice";
-import { addFavOpen } from "./favSlice";
+import {
+  selectFav,
+  getOneListAsync,
+  addFavOpen,
+  modalWindowOpen,
+  getAllListAsync,
+} from "./favSlice";
 import { LoadingCircle } from "../../components/LoadingCircle";
 import { CustomTable } from "../../components/CustomTable";
 import { AddFavForm } from "../../components/AddFavForm";
+import { ModalWindow } from "../../components/ModalWindow";
+import { Background } from "../../components/Background";
 import "./fav.scss";
 
 const Fav = () => {
@@ -15,7 +21,8 @@ const Fav = () => {
   const navigate = useNavigate();
   const { info } = useSelector(selectLogin);
   const { iduser } = info || 0;
-  const { loading, list, addFavWindowHandler } = useSelector(selectFav);
+  const { loading, list, addFavWindowHandler, modalWindowHandler } =
+    useSelector(selectFav);
   const { list: favList } = list || {};
   const { favs } = favList || [];
   const { listname } = favList || "";
@@ -39,8 +46,16 @@ const Fav = () => {
     dispatch(addFavOpen());
   };
 
+  const handleAllList = () => {
+    const { email } = info || "";
+    const { token } = info || "";
+    dispatch(modalWindowOpen());
+    dispatch(getAllListAsync({ token, email }));
+  };
+
   return (
     <main className="fav-container">
+      <Background />
       {!loading && (
         <div className="fav-container__positioner">
           <section className="fav-container__box">
@@ -54,15 +69,24 @@ const Fav = () => {
                 link={"Link"}
                 favs={favs}
               />
-              <button
-                className="fav-container__add-button"
-                onClick={handleAddFav}
-              >
-                Add one
-              </button>
+              <div className="fav-container__buttons">
+                <button
+                  className="fav-container__add-button"
+                  onClick={handleAllList}
+                >
+                  All Lists
+                </button>
+                <button
+                  className="fav-container__add-button"
+                  onClick={handleAddFav}
+                >
+                  Add Fav
+                </button>
+              </div>
             </article>
           </section>
           {addFavWindowHandler && <AddFavForm />}
+          {modalWindowHandler && <ModalWindow />}
         </div>
       )}
       {loading && <LoadingCircle />}
