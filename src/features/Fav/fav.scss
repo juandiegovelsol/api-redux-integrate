@@ -5,6 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #f1e3f3;
   &__positioner {
     height: 70%;
     width: 60%;
@@ -25,6 +26,9 @@
     height: 15%;
     width: 100%;
     background-color: #62bfed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   &__list {
     height: 85%;
@@ -35,8 +39,15 @@
     justify-content: space-evenly;
     align-items: center;
   }
-  &__add-button {
+  &__buttons {
     height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__add-button {
+    height: 100%;
     width: 20%;
     background-color: transparent;
     border: 3px solid #3590f3;
@@ -44,6 +55,7 @@
     font-size: larger;
     font-weight: 700;
     color: #3590f3;
+    margin: 0px 5px;
     &:hover,
     &:focus {
       cursor: pointer;

@@ -59,7 +59,6 @@ const Fav = () => {
           <section className="fav-container__box">
             <article className="fav-container__search">
               <h2>{listname}</h2>
-              <button onClick={handleAllList}>All Lists</button>
             </article>
             <article className="fav-container__list">
               <CustomTable
@@ -68,12 +67,20 @@ const Fav = () => {
                 link={"Link"}
                 favs={favs}
               />
-              <button
-                className="fav-container__add-button"
-                onClick={handleAddFav}
-              >
-                Add one
-              </button>
+              <div className="fav-container__buttons">
+                <button
+                  className="fav-container__add-button"
+                  onClick={handleAllList}
+                >
+                  All Lists
+                </button>
+                <button
+                  className="fav-container__add-button"
+                  onClick={handleAddFav}
+                >
+                  Add one
+                </button>
+              </div>
             </article>
           </section>
           {addFavWindowHandler && <AddFavForm />}

@@ -12,7 +12,6 @@ const CustomTable = ({ title, description, link, favs }) => {
           <th>{description}</th>
           <th>{link}</th>
           <th></th>
-          {/* <th></th> */}
         </tr>
       </thead>
       <tbody className="fav-list__body">

@@ -47,21 +47,20 @@ const ModalWindow = () => {
   return (
     <section className="modal">
       <article className="modal__list-container">
-        <button onClick={handleClose}>X</button>
         <table className="modal__list-table">
-          <thead>
-            <tr>
+          <thead className="modal__list-th">
+            <tr className="modal__list-thtr">
               <th>List Name</th>
-              <th></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="modal__list-tb">
             {allLists.length &&
               allLists.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.listname}</td>
-                  <td>
+                <tr className="modal__list-tbtr" key={index}>
+                  <td className="modal__list-tbtd1">{item.listname}</td>
+                  <td className="modal__list-tbtd2">
                     <button
+                      className="modal__list-errase-button"
                       onClick={() => {
                         handleErraseList(item, index);
                       }}
@@ -72,8 +71,21 @@ const ModalWindow = () => {
                 </tr>
               ))}
           </tbody>
+          <tfoot className="modal__list-tf">
+            <tr className="modal__list-tftr">
+              <td className="modal__list-tftd">
+                <button className="modal__list-button" onClick={handleClose}>
+                  Return
+                </button>
+              </td>
+              <td className="modal__list-tftd">
+                <button className="modal__list-button" onClick={handleAddList}>
+                  Add one default list
+                </button>
+              </td>
+            </tr>
+          </tfoot>
         </table>
-        <button onClick={handleAddList}>Add one default list</button>
       </article>
     </section>
   );
