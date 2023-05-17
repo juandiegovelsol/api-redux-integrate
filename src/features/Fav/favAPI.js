@@ -1,6 +1,6 @@
 export const getOneList = async ({ token, iduser }) => {
   /* const url = `http://localhost:4002/api/favs/${iduser}`; */
-  const url = `https://squid-app-tf6mp.ondigitalocean.app/api/favs/${iduser}`;
+  const url = `https://monkfish-app-9j8af.ondigitalocean.app/api/favs/${iduser}`;
   try {
     const response = await fetch(url, {
       headers: {
@@ -16,7 +16,7 @@ export const getOneList = async ({ token, iduser }) => {
 
 export const createList = async ({ token, listname, iduser }) => {
   /* const url = "http://localhost:4002/api/favs"; */
-  const url = `https://squid-app-tf6mp.ondigitalocean.app/api/favs`;
+  const url = `https://monkfish-app-9j8af.ondigitalocean.app/api/favs`;
   try {
     const response = await fetch(url, {
       method: "POST",
@@ -36,7 +36,7 @@ export const createList = async ({ token, listname, iduser }) => {
 
 export const getAllList = async ({ token, email }) => {
   /* const url = "http://localhost:4002/api/favs"; */
-  const url = `https://squid-app-tf6mp.ondigitalocean.app/api/favs`;
+  const url = `https://monkfish-app-9j8af.ondigitalocean.app/api/favs`;
   try {
     const response = await fetch(url, {
       headers: {
@@ -58,7 +58,7 @@ export const getAllList = async ({ token, email }) => {
 
 export const deleteList = async ({ token, idlist }) => {
   /* const url = `http://localhost:4002/api/favs/${idlist}`; */
-  const url = `https://squid-app-tf6mp.ondigitalocean.app/api/favs/${idlist}`;
+  const url = `https://monkfish-app-9j8af.ondigitalocean.app/api/favs/${idlist}`;
   try {
     const response = await fetch(url, {
       method: "DELETE",
@@ -79,7 +79,7 @@ export const createOneFav = async ({
   idlist: list_idlist,
 }) => {
   /* const url = "http://localhost:4002/api/favs/fav"; */
-  const url = `https://squid-app-tf6mp.ondigitalocean.app/api/favs/fav`;
+  const url = `https://monkfish-app-9j8af.ondigitalocean.app/api/favs/fav`;
   try {
     const response = await fetch(url, {
       method: "POST",
@@ -101,7 +101,7 @@ export const createOneFav = async ({
 
 export const deleteFav = async ({ token, idfavs }) => {
   /* const url = `http://localhost:4002/api/favs/fav/${idfavs}`; */
-  const url = `https://squid-app-tf6mp.ondigitalocean.app/api/favs/fav/${idfavs}`;
+  const url = `https://monkfish-app-9j8af.ondigitalocean.app/api/favs/fav/${idfavs}`;
   try {
     const response = await fetch(url, {
       method: "DELETE",
